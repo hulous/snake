@@ -1,6 +1,13 @@
 require "rake/testtask"
+require "./lib/snake"
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
   t.test_files = FileList["test/**/*_test.rb"]
+end
+
+desc "Run the game"
+task :run do |t|
+  game = Snake::Game.new
+  game.run
 end
