@@ -1,5 +1,7 @@
 module Snake
   class Snake
+    attr_writer :direction
+
     def initialize
       @positions = [
         [2, 0],
@@ -27,6 +29,12 @@ module Snake
       case @direction
       when 'down'
         @positions.push([head[0], head[1] + 1])
+      when 'up'
+        @positions.push([head[0], head[1] - 1])
+      when 'left'
+        @positions.push([head[0] - 1, head[1]])
+      when 'right'
+        @positions.push([head[0] + 1, head[1]])
       end
     end
 
