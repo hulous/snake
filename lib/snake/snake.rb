@@ -22,10 +22,16 @@ module Snake
     end
 
     def move
+      @positions.shift
+
       case @direction
       when 'down'
-        @positions.shift
+        @positions.push([head[0], head[1] + 1])
       end
+    end
+
+    private def head
+      @positions.last
     end
   end
 end
