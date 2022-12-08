@@ -13,7 +13,7 @@ module Snake
 
     def draw
       @positions.each do |position|
-        draw_square(x: position[0], y: position[1] * Game::GRID_SIZE, color: 'white')
+        draw_square(x: position[0] * Game::GRID_SIZE, y: position[1] * Game::GRID_SIZE, color: 'white')
       end
     end
 
