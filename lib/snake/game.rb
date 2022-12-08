@@ -24,7 +24,9 @@ module Snake
         event_key = event.key
 
         if %w[up down left right].include?(event_key)
-          snake.direction = event_key
+          if snake.can_change_direction_to?(event_key)
+            snake.direction = event_key
+          end
         end
       end
 

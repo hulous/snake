@@ -27,14 +27,24 @@ module Snake
       @positions.shift
 
       case @direction
-      when 'down'
-        @positions.push([head[0], head[1] + 1])
-      when 'up'
-        @positions.push([head[0], head[1] - 1])
-      when 'left'
-        @positions.push([head[0] - 1, head[1]])
-      when 'right'
-        @positions.push([head[0] + 1, head[1]])
+        when 'down'
+          @positions.push([head[0], head[1] + 1])
+        when 'up'
+          @positions.push([head[0], head[1] - 1])
+        when 'left'
+          @positions.push([head[0] - 1, head[1]])
+        when 'right'
+          @positions.push([head[0] + 1, head[1]])
+      end
+    end
+
+    def can_change_direction_to?(new_direction)
+
+      case new_direction
+        when 'up' then new_direction != 'down'
+        when 'down' then new_direction != 'up'
+        when 'left' then new_direction != 'right'
+        when 'right' then new_direction != 'left'
       end
     end
 
