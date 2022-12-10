@@ -39,8 +39,7 @@ module Snake
     end
 
     def can_change_direction_to?(new_direction)
-
-      case new_direction
+      case @direction
         when 'up' then new_direction != 'down'
         when 'down' then new_direction != 'up'
         when 'left' then new_direction != 'right'
