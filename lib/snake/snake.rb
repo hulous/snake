@@ -5,7 +5,6 @@ module Snake
     def initialize
       @positions = [ [2, 0], [2, 1], [2, 2], [2, 3] ]
       @direction = 'down'
-      @growing = false
     end
 
     def draw
@@ -14,8 +13,8 @@ module Snake
       end
     end
 
-    def move
-      @positions.shift unless @growing
+    def move(after_eat: false)
+      @positions.shift unless after_eat
 
       case @direction
         when 'down'
@@ -27,8 +26,6 @@ module Snake
         when 'right'
           @positions.push(new_coords(x: head[0] + 1, y: head[1]))
       end
-
-      @growing = false
     end
 
     def can_change_direction_to?(new_direction)
@@ -38,10 +35,6 @@ module Snake
         when 'left' then new_direction != 'right'
         when 'right' then new_direction != 'left'
       end
-    end
-
-    def grow
-      @growing = true
     end
 
     def head_x

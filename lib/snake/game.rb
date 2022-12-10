@@ -27,7 +27,7 @@ module Snake
 
         if food.eaten(snake.head_x, snake.head_y)
           player.record_eat
-          snake.grow
+          snake.move(after_eat: true) # grow
           @food = nil
         end
       end
