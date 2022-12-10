@@ -24,6 +24,11 @@ module Snake
 
         food.draw
         player.draw
+
+        if food.eaten(snake.head_x, snake.head_y)
+          player.record_eat
+          @food = nil
+        end
       end
 
       Ruby2D::Window.on :key_down do |event|
