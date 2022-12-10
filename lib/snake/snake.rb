@@ -28,13 +28,13 @@ module Snake
 
       case @direction
         when 'down'
-          @positions.push([head[0], head[1] + 1])
+          @positions.push(new_coords(x: head[0], y: head[1] + 1))
         when 'up'
-          @positions.push([head[0], head[1] - 1])
+          @positions.push(new_coords(x: head[0], y: head[1] - 1))
         when 'left'
-          @positions.push([head[0] - 1, head[1]])
+          @positions.push(new_coords(x: head[0] - 1, y: head[1]))
         when 'right'
-          @positions.push([head[0] + 1, head[1]])
+          @positions.push(new_coords(x: head[0] + 1, y: head[1]))
       end
     end
 
@@ -45,6 +45,10 @@ module Snake
         when 'left' then new_direction != 'right'
         when 'right' then new_direction != 'left'
       end
+    end
+
+    private def new_coords(x:, y:)
+      [x % Game::GRID_WIDTH, y % Game::GRID_HEIGHT]
     end
 
     private def head
