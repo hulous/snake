@@ -21,6 +21,8 @@ module Snake
         Ruby2D::Window.clear
         snake.move
         snake.draw
+
+        food.draw
       end
 
       Ruby2D::Window.on :key_down do |event|
@@ -38,6 +40,10 @@ module Snake
 
     def snake
       @snake ||= Snake.new
+    end
+
+    def food
+      @food ||= Food.new
     end
   end
 end
