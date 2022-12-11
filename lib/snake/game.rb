@@ -2,7 +2,7 @@ module Snake
   class Game
     WIDTH = 640      # width = 640 / 20 = 32
     HEIGHT = 480     # height = 480 / 20 = 24
-    FPS_CAP = 10
+    FPS_CAP = 5
 
     GRID_SIZE = 20
     GRID_HEIGHT = Ruby2D::Window.height / GRID_SIZE
