@@ -45,6 +45,15 @@ module Snake
             snake.direction = event_key
           end
         end
+
+        if player.lose?
+          if event_key.eql?('r')
+            @snake = nil
+            @player = nil
+          end
+
+          exit(0) if event_key.eql?('q')
+        end
       end
 
       Ruby2D::Window.show
