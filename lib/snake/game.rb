@@ -2,7 +2,7 @@ module Snake
   class Game
     WIDTH = 640      # width = 640 / 20 = 32
     HEIGHT = 480     # height = 480 / 20 = 24
-    FPS_CAP = 10
+    FPS_CAP = 5
 
     GRID_SIZE = 20
     GRID_HEIGHT = Ruby2D::Window.height / GRID_SIZE
@@ -19,10 +19,13 @@ module Snake
     def run
       Ruby2D::Window.update do
         Ruby2D::Window.clear
-        snake.move
-        snake.draw
 
-        food.draw
+        unless player.lose?
+          snake.move
+          food.draw
+        end
+
+        snake.draw
         player.draw
 
         if food.eaten(snake.head_x, snake.head_y)
@@ -30,6 +33,8 @@ module Snake
           snake.move(after_eat: true) # grow
           @food = nil
         end
+
+        player.lose if snake.hit_itself?
       end
 
       Ruby2D::Window.on :key_down do |event|
@@ -39,6 +44,15 @@ module Snake
           if snake.can_change_direction_to?(event_key)
             snake.direction = event_key
           end
+        end
+
+        if player.lose?
+          if event_key.eql?('r')
+            @snake = nil
+            @player = nil
+          end
+
+          exit(0) if event_key.eql?('q')
         end
       end
 

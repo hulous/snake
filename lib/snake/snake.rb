@@ -37,6 +37,10 @@ module Snake
       end
     end
 
+    def hit_itself?
+      @positions.uniq.length != @positions.length
+    end
+
     def head_x
       head.first
     end
