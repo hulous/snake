@@ -21,6 +21,15 @@ module Snake
         Ruby2D::Window.clear
         snake.move
         snake.draw
+
+        food.draw
+        player.draw
+
+        if food.eaten(snake.head_x, snake.head_y)
+          player.record_eat
+          snake.move(after_eat: true) # grow
+          @food = nil
+        end
       end
 
       Ruby2D::Window.on :key_down do |event|
@@ -38,6 +47,14 @@ module Snake
 
     def snake
       @snake ||= Snake.new
+    end
+
+    def food
+      @food ||= Food.new
+    end
+
+    def player
+      @player ||= Player.new
     end
   end
 end

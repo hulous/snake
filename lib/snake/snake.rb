@@ -3,13 +3,7 @@ module Snake
     attr_writer :direction
 
     def initialize
-      @positions = [
-        [2, 0],
-        [2, 1],
-        [2, 2],
-        [2, 3],
-      ]
-
+      @positions = [ [2, 0], [2, 1], [2, 2], [2, 3] ]
       @direction = 'down'
     end
 
@@ -19,12 +13,8 @@ module Snake
       end
     end
 
-    private def draw_square(x:, y:, color:)
-      Square.new(x: x, y: y, size: Game::GRID_SIZE - 1, color: color)
-    end
-
-    def move
-      @positions.shift
+    def move(after_eat: false)
+      @positions.shift unless after_eat
 
       case @direction
         when 'down'
@@ -47,11 +37,25 @@ module Snake
       end
     end
 
-    private def new_coords(x:, y:)
+    def head_x
+      head.first
+    end
+
+    def head_y
+      head.last
+    end
+
+    private
+
+    def draw_square(x:, y:, color:)
+      Ruby2D::Square.new(x: x, y: y, size: Game::GRID_SIZE - 1, color: color)
+    end
+
+    def new_coords(x:, y:)
       [x % Game::GRID_WIDTH, y % Game::GRID_HEIGHT]
     end
 
-    private def head
+    def head
       @positions.last
     end
   end
