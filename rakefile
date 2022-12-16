@@ -6,6 +6,15 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList["test/**/*_test.rb"]
 end
 
+namespace :test do
+  task :coverage do
+    require 'simplecov'
+    SimpleCov.command_name 'Unit Tests'
+    SimpleCov.start
+    Rake::Task["test"].execute
+  end
+end
+
 desc "Run the game"
 task :run do |t|
   game = Snake::Game.new

@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    docile (1.4.0)
     json (2.6.2)
     minitest (5.16.3)
     parallel (1.22.1)
@@ -30,6 +31,12 @@ GEM
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
     ruby2d (0.11.3)
+    simplecov (0.21.2)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     unicode-display_width (2.3.0)
 
 PLATFORMS
@@ -42,6 +49,7 @@ DEPENDENCIES
   rubocop-minitest
   rubocop-performance
   ruby2d
+  simplecov
 
 BUNDLED WITH
    2.3.23
