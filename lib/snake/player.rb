@@ -6,8 +6,9 @@ module Snake
     end
 
     def draw
-      Ruby2D::Text.new(score_message, color: "green", x: 10, y: 10, size: 25)
-      Ruby2D::Text.new(game_over_message, color: "green", x: 10, y: 50, size: 25) if lose?
+      return game_over_message if self.lose?
+
+      score_message
     end
 
     def record_eat
@@ -25,11 +26,15 @@ module Snake
     private
 
     def score_message
-      "Score: #{@score}"
+      render_text("Score: #{@score}")
     end
 
     def game_over_message
-      "Game Over! Press 'r' to restart. Press 'q' to quit."
+      render_text("Score: #{@score}. Game Over! Press 'r' to restart. Press 'q' to quit.")
+    end
+
+    def render_text(message)
+      Ruby2D::Text.new(message, color: "green", x: 10, y: 10, size: 25)
     end
   end
 end
