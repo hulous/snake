@@ -11,7 +11,7 @@ namespace :test do
     require 'simplecov'
     SimpleCov.command_name 'Unit Tests'
     SimpleCov.start
-    Rake::Task["test"].execute
+    Rake::Task["spec"].execute
   end
 end
 
