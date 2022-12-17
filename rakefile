@@ -17,6 +17,7 @@ namespace :app do
   end
 
   namespace :spec do
+    desc "Run spec suite with coverage"
     task :coverage do
       system("COVERAGE=true rake app:spec")
     end
