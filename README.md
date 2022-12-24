@@ -14,7 +14,9 @@ You can find more information here: https://www.ruby2d.com/learn/linux/#install-
 Run `bundle install`
 
 ### Testing
-Run `rake test` 
+Run `rake app:spec`
+
+To get covering repport run `rake app:spec:coverage`
 
 ### Linter
-Run `bundle exec rubocop .`
+Run `rake app:linter:all`
