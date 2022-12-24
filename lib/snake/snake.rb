@@ -17,22 +17,18 @@ module Snake
       @positions.shift unless after_eat
 
       case @direction
-        when 'down'
-          @positions.push(new_coords(x: head[0], y: head[1] + 1))
-        when 'up'
-          @positions.push(new_coords(x: head[0], y: head[1] - 1))
-        when 'left'
-          @positions.push(new_coords(x: head[0] - 1, y: head[1]))
-        when 'right'
-          @positions.push(new_coords(x: head[0] + 1, y: head[1]))
+        when 'down'  then @positions.push(new_coords(x: head[0], y: head[1] + 1))
+        when 'up'    then @positions.push(new_coords(x: head[0], y: head[1] - 1))
+        when 'left'  then @positions.push(new_coords(x: head[0] - 1, y: head[1]))
+        when 'right' then @positions.push(new_coords(x: head[0] + 1, y: head[1]))
       end
     end
 
     def can_change_direction_to?(new_direction)
       case @direction
-        when 'up' then new_direction != 'down'
-        when 'down' then new_direction != 'up'
-        when 'left' then new_direction != 'right'
+        when 'up'    then new_direction != 'down'
+        when 'down'  then new_direction != 'up'
+        when 'left'  then new_direction != 'right'
         when 'right' then new_direction != 'left'
       end
     end
