@@ -13,6 +13,12 @@ directories:
       enabled: true
       max_statements: 10
 
+    UncommunicativeVariableName:
+      enabled: true
+      accept:
+        - x
+        - y
+
     UtilityFunction:
       enabled: true
       public_methods_only: true

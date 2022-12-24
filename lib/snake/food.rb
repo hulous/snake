@@ -1,6 +1,11 @@
 module Snake
   class Food
-    def initialize; end
+    attr_reader :x, :y
+
+    def initialize
+      @x = rand(Game::GRID_WIDTH)
+      @y = rand(Game::GRID_HEIGHT)
+    end
 
     def draw
       draw_square(
@@ -15,14 +20,6 @@ module Snake
     end
 
     private
-
-    def x
-      @x ||= rand(Game::GRID_WIDTH)
-    end
-
-    def y
-      @y ||= rand(Game::GRID_HEIGHT)
-    end
 
     def draw_square(x_value:, y_value:, color:)
       Square.new(
