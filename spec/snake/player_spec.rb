@@ -1,5 +1,4 @@
 require "spec_helper"
-require "byebug"
 
 RSpec.describe Snake::Player do
   subject(:player) { described_class.new }
