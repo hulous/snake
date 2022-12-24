@@ -10,8 +10,8 @@ module Snake
       )
     end
 
-    def eaten(snake_head_x, snake_head_y)
-      x.eql?(snake_head_x) && y.eql?(snake_head_y)
+    def eaten?(snake_head)
+      x.eql?(snake_head.first) && y.eql?(snake_head.last)
     end
 
     private

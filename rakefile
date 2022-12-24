@@ -1,13 +1,25 @@
-require "rake/testtask"
+require "rspec/core/rake_task"
 require "./lib/snake"
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.test_files = FileList["test/**/*_test.rb"]
-end
 
-desc "Run the game"
-task :run do |t|
-  game = Snake::Game.new
-  game.run
+RSpec::Core::RakeTask.new
+
+namespace :app do
+  desc "Run the game"
+  task :run do |t|
+    game = Snake::Game.new
+    game.run
+  end
+
+  desc "Run spec suite"
+  RSpec::Core::RakeTask.new(:spec) do |spec|
+    spec.pattern = "spec/**/*_spec.rb"
+  end
+
+  namespace :spec do
+    desc "Run spec suite with coverage"
+    task :coverage do
+      system("COVERAGE=true rake app:spec")
+    end
+  end
 end

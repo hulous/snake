@@ -41,12 +41,8 @@ module Snake
       @positions.uniq.length != @positions.length
     end
 
-    def head_x
-      head.first
-    end
-
-    def head_y
-      head.last
+    def head
+      @positions.last
     end
 
     private
@@ -57,10 +53,6 @@ module Snake
 
     def new_coords(x:, y:)
       [x % Game::GRID_WIDTH, y % Game::GRID_HEIGHT]
-    end
-
-    def head
-      @positions.last
     end
   end
 end

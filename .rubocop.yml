@@ -1,6 +1,6 @@
 require:
   - rubocop-performance
-  - rubocop-minitest
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: ~
@@ -11,4 +11,4 @@ AllCops:
 
 Performance:
   Exclude:
-    - 'test/**/*'
+    - 'spec/**/*'
