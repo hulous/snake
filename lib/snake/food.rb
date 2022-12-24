@@ -8,26 +8,16 @@ module Snake
     end
 
     def draw
-      draw_square(
-        x_value: x * Game::GRID_SIZE,
-        y_value: y * Game::GRID_SIZE,
+      Square.new(
+        x: x * Game::GRID_SIZE,
+        y: y * Game::GRID_SIZE,
+        size: Game::GRID_SIZE - 1,
         color: 'yellow'
       )
     end
 
     def eaten?(snake_head)
       x.eql?(snake_head.first) && y.eql?(snake_head.last)
-    end
-
-    private
-
-    def draw_square(x_value:, y_value:, color:)
-      Square.new(
-        x: x_value,
-        y: y_value,
-        size: Game::GRID_SIZE - 1,
-        color: color
-      )
     end
   end
 end
