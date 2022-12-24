@@ -41,6 +41,10 @@ module Snake
       @positions.uniq.length != @positions.length
     end
 
+    def head
+      @positions.last
+    end
+
     private
 
     def draw_square(x:, y:, color:)
@@ -49,10 +53,6 @@ module Snake
 
     def new_coords(x:, y:)
       [x % Game::GRID_WIDTH, y % Game::GRID_HEIGHT]
-    end
-
-    def head
-      @positions.last
     end
   end
 end

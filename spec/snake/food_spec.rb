@@ -33,7 +33,7 @@ RSpec.describe Snake::Food do
     let(:food_y) { food.send(:y) }
 
     context '.true' do
-      let(:snake_head) { [food_x, food_y} }
+      let(:snake_head) { [food_x, food_y] }
 
       it { expect(snake_food_eaten).to be(true) }
     end
