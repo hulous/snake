@@ -41,14 +41,6 @@ module Snake
       @positions.uniq.length != @positions.length
     end
 
-    def head_x
-      head.first
-    end
-
-    def head_y
-      head.last
-    end
-
     private
 
     def draw_square(x:, y:, color:)

@@ -27,21 +27,19 @@ RSpec.describe Snake::Food do
   end
   
   context ".eaten?" do
-    subject(:snake_food_eaten) { food.eaten?(snake_head_x, snake_head_y) }
+    subject(:snake_food_eaten) { food.eaten?(snake_head) }
 
     let(:food_x) { food.send(:x) }
     let(:food_y) { food.send(:y) }
 
     context '.true' do
-      let(:snake_head_x) { food_x }
-      let(:snake_head_y) { food_y }
+      let(:snake_head) { [food_x, food_y} }
 
       it { expect(snake_food_eaten).to be(true) }
     end
 
     context '.false' do
-      let(:snake_head_x) { food_x / 2 }
-      let(:snake_head_y) { food_y / 2 }
+      let(:snake_head) { [food_x / 2, food_y / 2] }
 
       it { expect(snake_food_eaten).to be(false) }
     end

@@ -28,7 +28,7 @@ module Snake
         snake.draw
         player.draw
 
-        if food.eaten?(snake.head_x, snake.head_y)
+        if food.eaten?(snake.head)
           player.record_eat
           snake.move(after_eat: true) # grow
           @food = nil
