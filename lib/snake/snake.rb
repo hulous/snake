@@ -9,7 +9,10 @@ module Snake
 
     def draw
       @positions.each do |position|
-        draw_square(x: position[0] * Game::GRID_SIZE, y: position[1] * Game::GRID_SIZE, color: 'white')
+        draw_square(
+          x: position[0] * Game::GRID_SIZE,
+          y: position[1] * Game::GRID_SIZE
+        )
       end
     end
 
@@ -43,8 +46,8 @@ module Snake
 
     private
 
-    def draw_square(x:, y:, color:)
-      Ruby2D::Square.new(x: x, y: y, size: Game::GRID_SIZE - 1, color: color)
+    def draw_square(x:, y:)
+      Ruby2D::Square.new(x: x, y: y, size: Game::GRID_SIZE - 1, color: 'white')
     end
 
     def new_coords(x:, y:)
