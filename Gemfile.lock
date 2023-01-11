@@ -4,6 +4,7 @@ GEM
     ast (2.4.2)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    gosu (1.4.5)
     json (2.6.3)
     kwalify (0.7.2)
     parallel (1.22.1)
@@ -48,7 +49,6 @@ GEM
     rubocop-rspec (2.16.0)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
-    ruby2d (0.11.3)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -61,13 +61,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  gosu
   rake
   reek
   rspec
   rubocop
   rubocop-performance
   rubocop-rspec
-  ruby2d
   simplecov
 
 BUNDLED WITH

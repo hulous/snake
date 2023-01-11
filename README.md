@@ -5,11 +5,12 @@ Run `rake run`
 
 ## Dev
 ### Set up
-ruby2d gem need some specifics stuff. For linux:
+Gosu have some _needs_... on linux debian for example:
 ```shell
-sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+sudo apt-get install build-essential libsdl2-dev libsdl2-ttf-dev \
+                     libpango1.0-dev libgl1-mesa-dev libfreeimage-dev \
+                     libopenal-dev libsndfile1-dev
 ```
-You can find more information here: https://www.ruby2d.com/learn/linux/#install-packages
 
 Run `bundle install`
 

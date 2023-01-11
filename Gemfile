@@ -1,7 +1,7 @@
 source 'https://rubygems.org/'
 
 gem 'rake'
-gem 'ruby2d'
+gem 'gosu'
 
 group :test do
   gem 'rspec'
