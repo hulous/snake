@@ -5,58 +5,73 @@ module Snake
     FPS_CAP = 5
 
     GRID_SIZE = 20
-    GRID_HEIGHT = Ruby2D::Window.height / GRID_SIZE
-    GRID_WIDTH = Ruby2D::Window.width / GRID_SIZE
+    GRID_WIDTH = WIDTH / GRID_SIZE
+    GRID_HEIGHT = HEIGHT / GRID_SIZE
+
+    CONFIG = {
+      title: "Snake Game",
+      background: 'navy',
+      fps_cap: Game::FPS_CAP,
+      width: Game::WIDTH,
+      height: Game::HEIGHT
+    }.freeze
 
     def initialize
-      Ruby2D::Window.set(title: 'Snake')
-      Ruby2D::Window.set(background: 'navy')
-      Ruby2D::Window.set(fps_cap: Game::FPS_CAP)
-      Ruby2D::Window.set(width: Game::WIDTH)
-      Ruby2D::Window.set(height: Game::HEIGHT)
+      window.set(CONFIG)
     end
 
     def run
-      Ruby2D::Window.update do
-        Ruby2D::Window.clear
-
-        unless player.lose?
-          snake.move
-          food.draw
-        end
-
-        snake.draw
-        player.draw
-
-        if food.eaten?(snake.head)
-          player.record_eat
-          snake.move(after_eat: true) # grow
-          @food = nil
-        end
-
-        player.lose if snake.hit_itself?
+      window.update do
+        window.clear
+        game_engine_events
       end
 
-      Ruby2D::Window.on :key_down do |event|
-        event_key = event.key
+      window.on :key_down do |event|
+        key_binding(event.key)
+      end
 
-        if %w[up down left right].include?(event_key)
-          if snake.can_change_direction_to?(event_key)
-            snake.direction = event_key
-          end
-        end
+      window.show
+    end
 
-        if player.lose?
-          if event_key.eql?('r')
-            @snake = nil
-            @player = nil
-          end
+    private
 
-          exit(0) if event_key.eql?('q')
+    def game_engine_events
+      unless player.lose?
+        snake.move
+        food.draw
+      end
+
+      snake.draw
+      player.draw
+
+      if food.eaten?(snake.head)
+        player.record_eat
+        snake.move(after_eat: true) # grow
+        @food = nil
+      end
+
+      player.lose if snake.hit_itself?
+    end
+
+    def key_binding(event_key)
+      if %w[up down left right].include?(event_key)
+        if snake.can_change_direction_to?(event_key)
+          snake.direction = event_key
         end
       end
 
-      Ruby2D::Window.show
+      if player.lose?
+        if event_key.eql?('r')
+          @snake = nil
+          @player = nil
+        end
+
+        exit(0) if event_key.eql?('q')
+      end
+    end
+
+    def window
+      @window ||= Ruby2D::Window
     end
 
     def snake
