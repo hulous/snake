@@ -3,17 +3,12 @@ module Snake
     attr_reader :x, :y
 
     def initialize
-      @x = rand(Game::GRID_WIDTH)
-      @y = rand(Game::GRID_HEIGHT)
+      @x = rand(Config::GRID_WIDTH)
+      @y = rand(Config::GRID_HEIGHT)
     end
 
     def draw
-      Square.new(
-        x: x * Game::GRID_SIZE,
-        y: y * Game::GRID_SIZE,
-        size: Game::GRID_SIZE - 1,
-        color: 'yellow'
-      )
+      Ruby2D::Square.new(x: x * Config::GRID_SIZE, y: y * Config::GRID_SIZE, size: Config::GRID_SIZE - 1, color: 'yellow')
     end
 
     def eaten?(snake_head)

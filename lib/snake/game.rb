@@ -1,23 +1,7 @@
 module Snake
   class Game
-    WIDTH = 640      # width = 640 / 20 = 32
-    HEIGHT = 480     # height = 480 / 20 = 24
-    FPS_CAP = 5
-
-    GRID_SIZE = 20
-    GRID_WIDTH = WIDTH / GRID_SIZE
-    GRID_HEIGHT = HEIGHT / GRID_SIZE
-
-    CONFIG = {
-      title: "Snake Game",
-      background: 'navy',
-      fps_cap: Game::FPS_CAP,
-      width: Game::WIDTH,
-      height: Game::HEIGHT
-    }.freeze
-
     def initialize
-      window.set(CONFIG)
+      window.set(Config::CONFIG)
     end
 
     def run
