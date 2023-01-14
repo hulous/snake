@@ -23,7 +23,7 @@ RSpec.describe Snake::Snake do
 
   describe "#move" do
     subject(:snake_move) { snake.move }
-    subject(:snake_move_after_eat) { snake.move(after_eat: true) }
+    subject(:snake_move_after_eat) { snake.grow }
 
     context 'when before move' do
       it { expect(snake.instance_variable_get(:@positions)).to eq([[2, 0], [2, 1], [2, 2], [2, 3]]) }
@@ -37,7 +37,6 @@ RSpec.describe Snake::Snake do
       
         it { expect(snake.instance_variable_get(:@positions)).to eq([[2, 1], [2, 2], [2, 3], [2, 2]]) }
       end
-
 
       context 'move after eat' do
         before { snake_move_after_eat }
@@ -87,7 +86,7 @@ RSpec.describe Snake::Snake do
         it { expect(snake.instance_variable_get(:@positions)).to eq([[2, 1], [2, 2], [2, 3], [3, 3]]) }
       end
 
-      context 'nove after eat' do
+      context 'move after eat' do
         before { snake_move_after_eat }
 
         it { expect(snake.instance_variable_get(:@positions)).to eq([[2, 0], [2, 1], [2, 2], [2, 3], [3, 3]]) }
