@@ -16,6 +16,10 @@ module Snake
       end
     end
 
+    def grow
+      move(after_eat: true)
+    end
+
     def move(after_eat: false)
       @positions.shift unless after_eat
 
