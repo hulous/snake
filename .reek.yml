@@ -9,9 +9,25 @@ directories:
     NilCheck:
       enabled: false
 
+    TooManyConstants:
+      enabled: true
+      max_constants: 10
+
     TooManyStatements:
       enabled: true
       max_statements: 10
+
+    UncommunicativeParameterName:
+      enabled: true
+      accept:
+        - x
+        - y
+
+    UncommunicativeVariableName:
+      enabled: true
+      accept:
+        - x
+        - y
 
     UtilityFunction:
       enabled: true

@@ -1,36 +1,18 @@
 module Snake
   class Food
-    def initialize; end
+    attr_reader :x, :y
+
+    def initialize
+      @x = rand(Config::GRID_WIDTH)
+      @y = rand(Config::GRID_HEIGHT)
+    end
 
     def draw
-      draw_square(
-        x_value: x * Game::GRID_SIZE,
-        y_value: y * Game::GRID_SIZE,
-        color: 'yellow'
-      )
+      Ruby2D::Square.new(x: x * Config::GRID_SIZE, y: y * Config::GRID_SIZE, size: Config::GRID_SIZE - 1, color: 'yellow')
     end
 
     def eaten?(snake_head)
       x.eql?(snake_head.first) && y.eql?(snake_head.last)
-    end
-
-    private
-
-    def x
-      @x ||= rand(Game::GRID_WIDTH)
-    end
-
-    def y
-      @y ||= rand(Game::GRID_HEIGHT)
-    end
-
-    def draw_square(x_value:, y_value:, color:)
-      Square.new(
-        x: x_value,
-        y: y_value,
-        size: Game::GRID_SIZE - 1,
-        color: color
-      )
     end
   end
 end

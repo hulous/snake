@@ -1,62 +1,63 @@
 module Snake
   class Game
-    WIDTH = 640      # width = 640 / 20 = 32
-    HEIGHT = 480     # height = 480 / 20 = 24
-    FPS_CAP = 5
-
-    GRID_SIZE = 20
-    GRID_HEIGHT = Ruby2D::Window.height / GRID_SIZE
-    GRID_WIDTH = Ruby2D::Window.width / GRID_SIZE
-
     def initialize
-      Ruby2D::Window.set(title: 'Snake')
-      Ruby2D::Window.set(background: 'navy')
-      Ruby2D::Window.set(fps_cap: Game::FPS_CAP)
-      Ruby2D::Window.set(width: Game::WIDTH)
-      Ruby2D::Window.set(height: Game::HEIGHT)
+      window.set(Config::CONFIG)
     end
 
     def run
-      Ruby2D::Window.update do
-        Ruby2D::Window.clear
+      window.update do
+        window.clear
 
-        unless player.lose?
-          snake.move
-          food.draw
-        end
-
-        snake.draw
-        player.draw
-
-        if food.eaten?(snake.head)
-          player.record_eat
-          snake.move(after_eat: true) # grow
-          @food = nil
-        end
-
+        draw_items
+        record_food_eaten if food.eaten?(snake.head)
         player.lose if snake.hit_itself?
       end
 
-      Ruby2D::Window.on :key_down do |event|
+      window.on :key_down do |event|
         event_key = event.key
 
-        if %w[up down left right].include?(event_key)
-          if snake.can_change_direction_to?(event_key)
-            snake.direction = event_key
-          end
-        end
-
-        if player.lose?
-          if event_key.eql?('r')
-            @snake = nil
-            @player = nil
-          end
-
-          exit(0) if event_key.eql?('q')
-        end
+        snake_change_direction(event_key)
+        player_quit_or_replay(event_key)
       end
 
-      Ruby2D::Window.show
+      window.show
+    end
+
+    private
+
+    def draw_items
+      unless player.lose?
+        snake.move
+        food.draw
+      end
+
+      snake.draw
+      player.draw
+    end
+
+    def record_food_eaten
+      player.record_eat
+      snake.grow
+      @food = nil
+    end
+
+    def snake_change_direction(key)
+      snake.direction = key if %w[up down left right].include?(key) && snake.can_change_direction_to?(key)
+    end
+
+    def player_quit_or_replay(key)
+      if player.lose?
+        if key.eql?('r')
+          @snake = nil
+          @player = nil
+        end
+
+        exit(0) if key.eql?('q')
+      end
+    end
+
+    def window
+      @window ||= Ruby2D::Window
     end
 
     def snake

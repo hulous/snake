@@ -19,7 +19,25 @@ namespace :app do
   namespace :spec do
     desc "Run spec suite with coverage"
     task :coverage do
-      system("COVERAGE=true rake app:spec")
+      system("COVERAGE=true bundle exec rake app:spec")
+    end
+  end
+
+  namespace :linter do
+    desc "Run rubocop and reek"
+    task :all do
+      system("bundle exec rake app:linter:rubocop")
+      system("bundle exec rake app:linter:reek")
+    end
+
+    desc "Run rubocop"
+    task :rubocop do
+      system("bundle exec rubocop .")
+    end
+
+    desc "Run reek"
+    task :reek do
+      system("bundle exec reek .")
     end
   end
 end
