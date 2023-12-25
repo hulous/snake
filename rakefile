@@ -4,9 +4,13 @@ require "./lib/snake"
 
 RSpec::Core::RakeTask.new
 
+task :default do
+  Rake::Task["app:run"].invoke
+end
+
 namespace :app do
   desc "Run the game"
-  task :run do |t|
+  task :run do
     game = Snake::Game.new
     game.run
   end
